@@ -1,0 +1,19 @@
+{
+  "name": "memory-game",
+  "version": "1.0.0",
+  "description": "Memory game es un juego donde debes encontrar los pares de cartas.",
+  "main": "scripts.js",
+  "scripts": {
+    "test": "\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrancoGomez/memory-game.git"
+  },
+  "author": "Franco Gomez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrancoGomez/memory-game/issues"
+  },
+  "homepage": "https://github.com/FrancoGomez/memory-game#readme"
+}
