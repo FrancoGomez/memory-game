@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/FrancoGomez/memory-game/issues"
   },
-  "homepage": "https://github.com/FrancoGomez/memory-game#readme"
+  "homepage": "https://github.com/FrancoGomez/memory-game#readme",
+  "dependencies": {
+    "http-server": "^14.0.0"
+  }
 }
