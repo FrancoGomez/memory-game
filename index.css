@@ -17,7 +17,7 @@
 }
 
 .carta,
-.infromacion-carta {
+.informacion-carta {
   height: var(--dimension-cuadrada-cuadrado);
   width: var(--dimension-cuadrada-cuadrado);
 }
