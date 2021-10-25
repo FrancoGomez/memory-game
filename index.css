@@ -1,0 +1,23 @@
+:root {
+  --dimension-cuadrada-cuadrado: 160px;
+  --dimension-cuadrada-contenedor-cuadrados: 4;
+}
+
+.contenedor-cartas {
+  display: flex;
+  flex-wrap: wrap;
+  height: calc(
+    var(--dimension-cuadrada-cuadrado) *
+      var(--dimension-cuadrada-contenedor-cuadrados)
+  );
+  width: calc(
+    var(--dimension-cuadrada-cuadrado) *
+      var(--dimension-cuadrada-contenedor-cuadrados)
+  );
+}
+
+.carta,
+.infromacion-carta {
+  height: var(--dimension-cuadrada-cuadrado);
+  width: var(--dimension-cuadrada-cuadrado);
+}
