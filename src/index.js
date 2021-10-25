@@ -10,7 +10,7 @@ let colores = [
   "yellow",
   "pink",
 ];
-let informacionPrimerCarta = "";
+ -mlet informacionPrimerCarta = "";
 let informacionSegundaCarta = "";
 let intentos = 0;
 
@@ -59,6 +59,8 @@ const manejarCorrespondenciaCartas = (
 
   if (colorPrimerCarta === colorSegundaCarta) {
     eliminarCartas($informacionPrimerCarta, $informacionSegundaCarta);
+
+    verificarFinDelJuego();
   }
 
   intentos++;
@@ -83,7 +85,6 @@ const manejarClickCarta = ($informacionCarta) => {
     informacionPrimerCarta = "";
     informacionSegundaCarta = "";
 
-    verificarFinDelJuego();
   }
 };
 
