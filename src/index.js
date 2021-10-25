@@ -11,7 +11,15 @@ let colores = [
   "pink",
 ];
 
-let coloresCartas = colores.concat(colores);
+const mezclarColores = (colores) => {
+  let coloresRandom = colores.sort(() => {
+    return 0.5 - Math.random();
+  });
+
+  return coloresRandom;
+};
+
+const coloresCartas = mezclarColores(colores.concat(colores));
 
 const generarCartas = (coloresCartas) => {
   const $contenedorCartas = document.createElement("div");
@@ -32,4 +40,4 @@ const generarCartas = (coloresCartas) => {
   $contenedorJuego.appendChild($contenedorCartas);
 };
 
-generarCartas(coloresCartas)
+generarCartas(coloresCartas);
