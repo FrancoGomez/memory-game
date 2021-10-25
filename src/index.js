@@ -10,6 +10,9 @@ let colores = [
   "yellow",
   "pink",
 ];
+let informacionPrimerCarta = "";
+let informacionSegundaCarta = "";
+let intentos = 0;
 
 const mezclarColores = (colores) => {
   let coloresRandom = colores.sort(() => {
@@ -30,7 +33,7 @@ const generarCartas = (coloresCartas) => {
     $carta.className = "carta";
 
     const $informacionCarta = document.createElement("div");
-    $informacionCarta.className = "infromacion-carta";
+    $informacionCarta.className = "informacion-carta";
     $informacionCarta.style.backgroundColor = color;
 
     $carta.appendChild($informacionCarta);
@@ -41,3 +44,51 @@ const generarCartas = (coloresCartas) => {
 };
 
 generarCartas(coloresCartas);
+
+const eliminarCartas = ($informacionPrimerCarta, $informacionSegundaCarta) => {
+  $informacionPrimerCarta.remove();
+  $informacionSegundaCarta.remove();
+};
+
+const manejarCorrespondenciaCartas = (
+  $informacionPrimerCarta,
+  $informacionSegundaCarta
+) => {
+  const colorPrimerCarta = $informacionPrimerCarta.style.backgroundColor;
+  const colorSegundaCarta = $informacionSegundaCarta.style.backgroundColor;
+
+  if (colorPrimerCarta === colorSegundaCarta) {
+    eliminarCartas($informacionPrimerCarta, $informacionSegundaCarta);
+  }
+
+  intentos++;
+};
+
+const verificarFinDelJuego = () => {
+  if (document.querySelectorAll(".informacion-carta").length === 0) {
+    console.log(`Felicidades, terminaste el juego en ${intentos} intentos!`);
+  }
+};
+
+const manejarClickCarta = ($informacionCarta) => {
+  if (informacionPrimerCarta === "") {
+    informacionPrimerCarta = $informacionCarta;
+  } else if ($informacionCarta !== informacionPrimerCarta) {
+    informacionSegundaCarta = $informacionCarta;
+
+    manejarCorrespondenciaCartas(
+      informacionPrimerCarta,
+      informacionSegundaCarta
+    );
+    informacionPrimerCarta = "";
+    informacionSegundaCarta = "";
+
+    verificarFinDelJuego();
+  }
+};
+
+$contenedorJuego.onclick = (evento) => {
+  if (evento.target.className === "informacion-carta") {
+    manejarClickCarta(evento.target);
+  }
+};
