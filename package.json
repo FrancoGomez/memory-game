@@ -18,5 +18,8 @@
   "homepage": "https://github.com/FrancoGomez/memory-game#readme",
   "dependencies": {
     "http-server": "^14.0.0"
+  },
+  "devDependencies": {
+    "cypress": "^8.7.0"
   }
 }
