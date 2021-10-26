@@ -62,7 +62,7 @@ $botonComenzar.onclick = () => {
 
 const iniciarJuego = () => {
   if (modalCambiado) {
-    generarCartas(coloresCartas);
+    generarCartas();
     intentos = 0;
   }
 
