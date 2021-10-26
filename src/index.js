@@ -21,17 +21,9 @@ let informacionSegundaCarta = "";
 let intentos = 0;
 let modalCambiado = false;
 
-const mezclarColores = (colores) => {
-  let coloresRandom = colores.sort(() => {
-    return 0.5 - Math.random();
-  });
+const generarCartas = () => {
+  const coloresCartas = mezclarColores(colores.concat(colores));
 
-  return coloresRandom;
-};
-
-const coloresCartas = mezclarColores(colores.concat(colores));
-
-const generarCartas = (coloresCartas) => {
   const $contenedorCartas = document.createElement("div");
   $contenedorCartas.className = "contenedor-cartas";
 
@@ -50,30 +42,57 @@ const generarCartas = (coloresCartas) => {
   $contenedorJuego.appendChild($contenedorCartas);
 };
 
-const mostrarModalFinJuego = () => {
+const mezclarColores = (colores) => {
+  let coloresRandom = colores.sort(() => {
+    return 0.5 - Math.random();
+  });
+
+  return coloresRandom;
+};
+
+generarCartas();
+
+$botonComenzar.onclick = () => {
   if (modalCambiado) {
-    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
-  } else {
-    $tituloModal.textContent = "Felicidades!";
-    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
-    modalCambiado = true;
+    $contenedorJuego.firstChild.remove();
   }
+
+  iniciarJuego();
 };
 
-const verificarFinDelJuego = () => {
-  if (document.querySelectorAll(".informacion-carta").length === 0) {
-    $containerContenedorModal.className = $containerContenedorModal.id;
-
-    mostrarModalFinJuego();
+const iniciarJuego = () => {
+  if (modalCambiado) {
+    generarCartas(coloresCartas);
+    intentos = 0;
   }
+
+  $containerContenedorModal.className = "oculto";
+  habilitarInputJugador();
 };
 
-const eliminarCartas = ($informacionPrimerCarta, $informacionSegundaCarta) => {
-  $informacionPrimerCarta.parentNode.style.backgroundColor = "transparent";
-  $informacionSegundaCarta.parentNode.style.backgroundColor = "transparent";
+const habilitarInputJugador = () => {
+  $contenedorJuego.onclick = (evento) => {
+    if (evento.target.className === "informacion-carta") {
+      manejarClickCarta(evento.target);
+    }
+  };
+};
 
-  $informacionPrimerCarta.remove();
-  $informacionSegundaCarta.remove();
+const manejarClickCarta = ($informacionCarta) => {
+  $informacionCarta.style.opacity = 1;
+
+  if (informacionPrimerCarta === "") {
+    informacionPrimerCarta = $informacionCarta;
+  } else if ($informacionCarta !== informacionPrimerCarta) {
+    informacionSegundaCarta = $informacionCarta;
+
+    manejarCorrespondenciaCartas(
+      informacionPrimerCarta,
+      informacionSegundaCarta
+    );
+    informacionPrimerCarta = "";
+    informacionSegundaCarta = "";
+  }
 };
 
 const manejarCorrespondenciaCartas = (
@@ -99,47 +118,28 @@ const manejarCorrespondenciaCartas = (
   intentos++;
 };
 
-const manejarClickCarta = ($informacionCarta) => {
-  $informacionCarta.style.opacity = 1;
+const eliminarCartas = ($informacionPrimerCarta, $informacionSegundaCarta) => {
+  $informacionPrimerCarta.parentNode.style.backgroundColor = "transparent";
+  $informacionSegundaCarta.parentNode.style.backgroundColor = "transparent";
 
-  if (informacionPrimerCarta === "") {
-    informacionPrimerCarta = $informacionCarta;
-  } else if ($informacionCarta !== informacionPrimerCarta) {
-    informacionSegundaCarta = $informacionCarta;
+  $informacionPrimerCarta.remove();
+  $informacionSegundaCarta.remove();
+};
 
-    manejarCorrespondenciaCartas(
-      informacionPrimerCarta,
-      informacionSegundaCarta
-    );
-    informacionPrimerCarta = "";
-    informacionSegundaCarta = "";
+const verificarFinDelJuego = () => {
+  if (document.querySelectorAll(".informacion-carta").length === 0) {
+    $containerContenedorModal.className = $containerContenedorModal.id;
+
+    mostrarModalFinJuego();
   }
 };
 
-const habilitarInputJugador = () => {
-  $contenedorJuego.onclick = (evento) => {
-    if (evento.target.className === "informacion-carta") {
-      manejarClickCarta(evento.target);
-    }
-  };
-};
-
-const iniciarJuego = () => {
+const mostrarModalFinJuego = () => {
   if (modalCambiado) {
-    generarCartas(coloresCartas);
-    intentos = 0;
+    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
+  } else {
+    $tituloModal.textContent = "Felicidades!";
+    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
+    modalCambiado = true;
   }
-
-  $containerContenedorModal.className = "oculto";
-  habilitarInputJugador();
-};
-
-generarCartas(coloresCartas);
-
-$botonComenzar.onclick = () => {
-  if (modalCambiado) {
-    $contenedorJuego.firstChild.remove();
-  }
-
-  iniciarJuego();
 };
