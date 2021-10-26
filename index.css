@@ -1,6 +1,7 @@
 :root {
   --dimension-cuadrada-cuadrado: 160px;
   --dimension-cuadrada-contenedor-cuadrados: 4;
+  --borde-cuadrado: 2px * 2;
 }
 
 .contenedor-cartas {
@@ -12,6 +13,8 @@
   );
   width: calc(
     var(--dimension-cuadrada-cuadrado) *
+      var(--dimension-cuadrada-contenedor-cuadrados) + 
+      var(--borde-cuadrado) *
       var(--dimension-cuadrada-contenedor-cuadrados)
   );
 }
@@ -20,4 +23,18 @@
 .informacion-carta {
   height: var(--dimension-cuadrada-cuadrado);
   width: var(--dimension-cuadrada-cuadrado);
+}
+
+.carta {
+  background-color: gray;
+  border: 2px solid white;
+}
+
+.informacion-carta {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.informacion-carta:hover {
+    cursor: pointer;
 }
