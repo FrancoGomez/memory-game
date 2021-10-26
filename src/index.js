@@ -10,7 +10,7 @@ let colores = [
   "yellow",
   "pink",
 ];
- -mlet informacionPrimerCarta = "";
+let informacionPrimerCarta = "";
 let informacionSegundaCarta = "";
 let intentos = 0;
 
@@ -46,6 +46,9 @@ const generarCartas = (coloresCartas) => {
 generarCartas(coloresCartas);
 
 const eliminarCartas = ($informacionPrimerCarta, $informacionSegundaCarta) => {
+  $informacionPrimerCarta.parentNode.style.backgroundColor = 'transparent';
+  $informacionSegundaCarta.parentNode.style.backgroundColor = 'transparent';
+  
   $informacionPrimerCarta.remove();
   $informacionSegundaCarta.remove();
 };
@@ -58,9 +61,16 @@ const manejarCorrespondenciaCartas = (
   const colorSegundaCarta = $informacionSegundaCarta.style.backgroundColor;
 
   if (colorPrimerCarta === colorSegundaCarta) {
-    eliminarCartas($informacionPrimerCarta, $informacionSegundaCarta);
+    setTimeout(() => {
+      eliminarCartas($informacionPrimerCarta, $informacionSegundaCarta);
+    }, 500);
 
     verificarFinDelJuego();
+  } else {
+    setTimeout(() => {
+      $informacionPrimerCarta.style.opacity = 0;
+      $informacionSegundaCarta.style.opacity = 0;
+    }, 500);
   }
 
   intentos++;
@@ -73,6 +83,8 @@ const verificarFinDelJuego = () => {
 };
 
 const manejarClickCarta = ($informacionCarta) => {
+  $informacionCarta.style.opacity = 1;
+
   if (informacionPrimerCarta === "") {
     informacionPrimerCarta = $informacionCarta;
   } else if ($informacionCarta !== informacionPrimerCarta) {
@@ -84,7 +96,6 @@ const manejarClickCarta = ($informacionCarta) => {
     );
     informacionPrimerCarta = "";
     informacionSegundaCarta = "";
-
   }
 };
 
