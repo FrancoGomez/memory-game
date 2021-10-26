@@ -46,9 +46,9 @@ const generarCartas = (coloresCartas) => {
 generarCartas(coloresCartas);
 
 const eliminarCartas = ($informacionPrimerCarta, $informacionSegundaCarta) => {
-  $informacionPrimerCarta.parentNode.style.backgroundColor = 'transparent';
-  $informacionSegundaCarta.parentNode.style.backgroundColor = 'transparent';
-  
+  $informacionPrimerCarta.parentNode.style.backgroundColor = "transparent";
+  $informacionSegundaCarta.parentNode.style.backgroundColor = "transparent";
+
   $informacionPrimerCarta.remove();
   $informacionSegundaCarta.remove();
 };
@@ -63,9 +63,9 @@ const manejarCorrespondenciaCartas = (
   if (colorPrimerCarta === colorSegundaCarta) {
     setTimeout(() => {
       eliminarCartas($informacionPrimerCarta, $informacionSegundaCarta);
-    }, 500);
 
-    verificarFinDelJuego();
+      verificarFinDelJuego();
+    }, 500);
   } else {
     setTimeout(() => {
       $informacionPrimerCarta.style.opacity = 0;
