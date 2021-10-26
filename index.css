@@ -1,20 +1,41 @@
 :root {
-  --dimension-cuadrada-cuadrado: 160px;
+  --dimension-cuadrada-cuadrado: min(
+    calc(100vh / 4 - 4px),
+    calc(100vw / 4 - 4px)
+  );
   --dimension-cuadrada-contenedor-cuadrados: 4;
   --borde-cuadrado: 2px * 2;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.contenedor-juego {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
 .contenedor-cartas {
+  position: absolute;
+  top: calc(
+    50vh - ((var(--dimension-cuadrada-cuadrado) + var(--borde-cuadrado)) * 2)
+  );
+  left: calc(
+    50vw - ((var(--dimension-cuadrada-cuadrado) + var(--borde-cuadrado)) * 2)
+  );
   display: flex;
   flex-wrap: wrap;
   height: calc(
     var(--dimension-cuadrada-cuadrado) *
+      var(--dimension-cuadrada-contenedor-cuadrados) + var(--borde-cuadrado) *
       var(--dimension-cuadrada-contenedor-cuadrados)
   );
   width: calc(
     var(--dimension-cuadrada-cuadrado) *
-      var(--dimension-cuadrada-contenedor-cuadrados) + 
-      var(--borde-cuadrado) *
+      var(--dimension-cuadrada-contenedor-cuadrados) + var(--borde-cuadrado) *
       var(--dimension-cuadrada-contenedor-cuadrados)
   );
 }
@@ -36,5 +57,5 @@
 }
 
 .informacion-carta:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
