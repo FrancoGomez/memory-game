@@ -1,8 +1,10 @@
 const $contenedorJuego = document.querySelector("#contenedor-juego");
-const $containerContenedorModal = document.querySelector('#container-contenedor-modal')
-const $tituloModal = document.querySelector('#titulo-modal')
-const $descripcionModal = document.querySelector('#descripcion-modal')
-const $botonComenzar = document.querySelector('#boton-comenzar')
+const $containerContenedorModal = document.querySelector(
+  "#container-contenedor-modal"
+);
+const $tituloModal = document.querySelector("#titulo-modal");
+const $descripcionModal = document.querySelector("#descripcion-modal");
+const $botonComenzar = document.querySelector("#boton-comenzar");
 
 let colores = [
   "brown",
@@ -17,7 +19,7 @@ let colores = [
 let informacionPrimerCarta = "";
 let informacionSegundaCarta = "";
 let intentos = 0;
-let modalCambiado = false
+let modalCambiado = false;
 
 const mezclarColores = (colores) => {
   let coloresRandom = colores.sort(() => {
@@ -49,20 +51,20 @@ const generarCartas = (coloresCartas) => {
 };
 
 const mostrarModalFinJuego = () => {
-  if(modalCambiado) {
-    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`
+  if (modalCambiado) {
+    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
   } else {
-    $tituloModal.textContent = 'Felicidades!'
-    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`
-    modalCambiado = true
+    $tituloModal.textContent = "Felicidades!";
+    $descripcionModal.textContent = `Terminaste el juego en ${intentos} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`;
+    modalCambiado = true;
   }
-}
+};
 
 const verificarFinDelJuego = () => {
   if (document.querySelectorAll(".informacion-carta").length === 0) {
-    $containerContenedorModal.className = $containerContenedorModal.id
+    $containerContenedorModal.className = $containerContenedorModal.id;
 
-    mostrarModalFinJuego()
+    mostrarModalFinJuego();
   }
 };
 
@@ -120,24 +122,24 @@ const habilitarInputJugador = () => {
       manejarClickCarta(evento.target);
     }
   };
-}
+};
 
 const iniciarJuego = () => {
-  if(modalCambiado) {
+  if (modalCambiado) {
     generarCartas(coloresCartas);
-    intentos = 0
+    intentos = 0;
   }
 
-  $containerContenedorModal.className = 'oculto'
-  habilitarInputJugador()
-}
+  $containerContenedorModal.className = "oculto";
+  habilitarInputJugador();
+};
 
 generarCartas(coloresCartas);
 
 $botonComenzar.onclick = () => {
-  if(modalCambiado) {
-    $contenedorJuego.firstChild.remove()
+  if (modalCambiado) {
+    $contenedorJuego.firstChild.remove();
   }
 
-  iniciarJuego()
-}
+  iniciarJuego();
+};
