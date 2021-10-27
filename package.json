@@ -4,7 +4,7 @@
   "description": "Memory game es un juego donde debes encontrar los pares de cartas.",
   "main": "scripts.js",
   "scripts": {
-    "test": "\""
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
