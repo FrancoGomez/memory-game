@@ -57,6 +57,8 @@ describe("Juega juego", () => {
   });
 
   it("Resuelve juego", () => {
+    const NUMERO_INTENTOS = CANTIDAD_CARTAS / 2 + 1 // Porque falla el primer intento
+
     cy.get("div.informacion-carta").should("have.length", CANTIDAD_CARTAS);
 
     matrisCartasPares.forEach((parCartas) => {
@@ -65,6 +67,8 @@ describe("Juega juego", () => {
     });
 
     cy.get("div.informacion-carta").should("have.length", 0);
+
+    cy.get('#descripcion-modal').contains(`Terminaste el juego en ${NUMERO_INTENTOS} intentos. Si asi lo deseas, podes pulsar comenzar para volver a jugar.`)
   });
 
   it("Aparece modal final", () => {
